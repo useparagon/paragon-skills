@@ -1,7 +1,34 @@
-# Build With Paragon Skill
+<p align="center">
+  <a href="https://www.useparagon.com/" target="blank"><img src="https://raw.githubusercontent.com/useparagon/aws-on-prem/master/assets/paragon-logo-dark.png" width="150" alt="Paragon Logo" /></a>
+</p>
+
+<p align="center">
+  <b>
+    The embedded integration platform for developers.
+  </b>
+</p>
+
+---
+
+# Paragon Skills
+Agents can build integrations in just minutes with Paragon Skills. The main Paragon Skill
+provides your agent context with everything it needs to setup Paragon, add the Connect 
+Portal to authenticate your users, and get started with ActionKit and/or Managed Sync 
+to build any integration use case.
 
 ## Getting Started
-1. Navigate to the **skills** directory of your agentic IDE
+
+```
+npx skills add useparagon/paragon-skills
+```
+
+
+## Manual installation
+1. Clone this repo
+
+2. Copy the `skills/paragon-skill` directory
+
+3. Navigate to the **skills** directory of your agentic IDE
 
 **For Cursor**
 ```
@@ -18,16 +45,11 @@
 ~/.config/opencode/skills
 ```
 
-2. Create a directory called `build-w-paragon`
-
-```bash
-mkdir build-w-paragon
-```
-
-3. Navigate to `build-w-paragon` and clone this repo
+4. Paste the `paragon-skill` directory into your IDE's `skills` directory
 
 ## Future additions
 Advanced use cases:
+- [ ] Trigger API
 - [ ] Proxy
 - [ ] Custom settings like dropdowns and field mappings
 - [ ] Headless Connect Portal
