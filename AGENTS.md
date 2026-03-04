@@ -1,4 +1,4 @@
-# AGENTS.md — build-with-paragon Skill
+# AGENTS.md — paragon-skill Skill
 
 ## Repository Purpose
 
