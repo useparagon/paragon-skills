@@ -35,19 +35,12 @@ npx skills add useparagon/paragon-skills
 
 3. Navigate to the **skills** directory of your agentic IDE
 
-**For Cursor**
-```
+```javascript
+//for example
 ~/.cursor/skills/
-```
-
-**For Claude Code**
-```
-~/.claude/skills
-```
-
-**For Opencode**
-```
-~/.config/opencode/skills
+~/.claude/skills/
+~/.agents/skills/
+~/.config/opencode/skills/
 ```
 
 4. Paste the `paragon-skill` directory into your IDE's `skills` directory
