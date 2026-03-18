@@ -11,7 +11,7 @@
 ---
 
 # Paragon Skills
-Agents can build integrations in just minutes with Paragon Skills. The main Paragon Skill
+Agents can build integrations in just minutes with Paragon Skills. The Paragon Skill
 provides your agent context with everything it needs to:
 
 1. Setup the Paragon SDK 
