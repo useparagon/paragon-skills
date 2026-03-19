@@ -79,6 +79,11 @@ The `paragon.connect` method is used to bring up the Connect Portal
 paragon.connect("salesforce"); //replace salesforce with any integration type (found in the integration metadata
 ```
 
+### Step 2b: Headless Connect
+Steps 1 and 2 render Paragon's **pre-built** Connect Portal. Some users may want a headless way to connect 
+their users' integrations with their own UI. For these users, refer to the [Headless Connect Portal](headless-connect.md)
+
+## Next Steps
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
 the 3rd-party API on their behalf!
 
