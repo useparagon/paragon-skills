@@ -60,7 +60,9 @@ You agent should naturally detect when the Paragon Skill is needed.
 
 In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Skill...").
 
-* For users who are implementing Paragon in their project for the first time, start by asking your agent to setup the Paragon SDK or bring up the "Connect Portal" for the integration you want to build.
+### New Paragon Users
+
+For users who are implementing Paragon in their project for the first time, start by asking your agent to setup the Paragon SDK or bring up the "Connect Portal" for the integration you want to build.
 
 ```markdown
 Setup the Paragon SDK in my project
@@ -68,6 +70,8 @@ Setup the Paragon SDK in my project
 Build an integration card for Google Drive
 ```
 
-* For users who have already built a few integrations, prompt Paragon to use [ActionKit](https://useparagon.com/product/actionkit) and [Managed Sync](https://useparagon.com/product/managed-sync) for your unique use case.
+### Adding Integration Features
+
+For users who have already built a few integrations, prompt Paragon to use [ActionKit](https://useparagon.com/product/actionkit) and [Managed Sync](https://useparagon.com/product/managed-sync) for your unique use case.
 
 ![Paragon Skill Trigger](/assets/opencode-skill-trigger.png)

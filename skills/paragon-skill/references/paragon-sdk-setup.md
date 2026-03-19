@@ -21,6 +21,7 @@ npm install @useparagon/connect
 ```
 
 - [ ] Prompt developer to grab their `Paragon Project ID` and `Signing Key` from the Paragon dashboard. 
+    - Give the user the signup link if the user does not have a Paragon account: [Sign up for Paragon](https://dashboard.useparagon.com/signup)
     - Direct them to the docs if they need help: [Paragon Setup](https://docs.useparagon.com/getting-started/installing-the-connect-sdk)
     - Generally the `Paragon Project ID` and `Signing Key` should be environment variables
 
@@ -38,7 +39,7 @@ npm install @useparagon/connect
 	"exp": 1608603716,
 }
 ```
-  - This should NOT be done on the client. The `Signing Key` should only be exposed to server side applications
+  - **This should NOT be done on the client. The `Signing Key` should only be exposed to server side applications**
 
 - [ ] On the client-side nodejs application, the Paragon autheticate method can now be used
 

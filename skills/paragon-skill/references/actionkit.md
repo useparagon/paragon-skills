@@ -8,10 +8,14 @@ Some examples of ActionKit actions are:
 - `SALESFORCE_UPDATE_RECORD`
 - `SLACK_SEND_DIRECT_MESSAGE`
 
+The full list of available actions can be found in the [ActionKit docs](https://docs.useparagon.com/actionkit/overview)
+
 Popular use cases for ActionKit include
 1. Tools for AI agents
 2. Steps for Workflow Builders
 3. UI components like buttons that should perform a 3rd-party action
+
+**Note**: If the user needs an action that ActionKit does not have a pre-built, reference the [Proxy API](proxy-api.md)
 
 ## ActionKit Endpoints
 The ActionKit API has two main endpoints:
