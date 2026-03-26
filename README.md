@@ -59,10 +59,9 @@ npx skills update
 ## Start Prompting With The Skill
 You agent should naturally detect when the Paragon Skill is needed.
 
-In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Skill...").
+In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Setup Skill...").
 
-### Start prompting
-Try these prompts with your agentic IDE
+### Starter Prompts
 
 ```markdown
 Setup the Paragon SDK in my project
