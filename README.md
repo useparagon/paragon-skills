@@ -14,7 +14,9 @@
 Agents can **setup your integrations** in just minutes with Paragon Skills. The Paragon Skill provides your agent context with everything it needs to:
 
 1. Setup the Paragon SDK 
+
 2. Add the Connect Portal to authenticate your users 
+
 3. Get started with [ActionKit](https://useparagon.com/product/actionkit) and/or [Managed Sync](https://useparagon.com/product/managed-sync) to build any integration use case.
 
 If you're setting up Paragon for the first time, use this Skill to get up and running with your integrations.
@@ -24,7 +26,7 @@ If you're setting up Paragon for the first time, use this Skill to get up and ru
 ## Getting Started
 
 ### Installing via the Skills CLI
-The `npx skills` CLI by vercel automatically adds the Paragon Skill for the most popular agentis IDEs.
+The `npx skills` CLI by vercel automatically adds the Paragon Skill for the most popular agentic IDEs.
 See the manual installation section if needed.
 ```
 npx skills add useparagon/paragon-skills
@@ -60,7 +62,7 @@ You agent should naturally detect when the Paragon Skill is needed.
 In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Skill...").
 
 ### Start prompting
-Start with these prompts in your project
+Try these prompts with your agentic IDE
 
 ```markdown
 Setup the Paragon SDK in my project
