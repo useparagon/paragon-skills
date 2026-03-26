@@ -1,157 +1,92 @@
-# AGENTS.md — paragon-skill Skill
+# AGENTS.md - Paragon Skills Repository
 
-## Repository Purpose
+This is a documentation repository for the Paragon Skill used by agentic coding agents.
 
-This is a **documentation-only skill repository** for agentic coding IDEs (Cursor, Claude Code, Opencode).
-It contains no source code, build tooling, tests, or CI/CD. Its purpose is to provide reference
-material so AI coding agents can help developers integrate with the Paragon platform.
+## Repository Overview
 
-## Build / Lint / Test Commands
+This repository contains skill files that help agentic IDEs (Cursor, Claude, opencode, etc.) set up Paragon integrations for users. Skills are markdown-based documentation stored in the `skills/` directory.
 
-There are no build, lint, or test commands in this repository. All content is Markdown.
-If you are editing reference docs, validate links manually and ensure code examples are syntactically correct.
+## Build/Lint/Test Commands
 
-## Repository Structure
+**This repository has no build system, tests, or linting.** It contains only markdown documentation files.
+
+- No `package.json`, `Cargo.toml`, or other build configuration
+- No automated testing framework
+- No linting tools configured
+
+## Content Guidelines
+
+### Skill Structure
+
+Each skill must follow this directory structure:
 
 ```
-.
-├── SKILL.md                              # Skill manifest (name, description, table of contents)
-├── README.md                             # Installation instructions for IDE skill directories
-├── AGENTS.md                             # This file
-└── references/
-    ├── paragon-sdk-setup.md              # SDK install, JWT signing, paragon.authenticate()
-    ├── connect-integrations.md           # Integration metadata, Connect Portal rendering
-    ├── actionkit.md                      # LIST ACTIONS / RUN ACTION endpoints, AI agent tools example
-    ├── managed-sync.md                   # Enable Sync, Pull Records, Download Files, Permissions API
-    └── sync-management.md               # List / Disable / Re-enable / Delete sync pipelines
+skills/
+  └── {skill-name}/
+      ├── SKILL.md           # Main skill entry point (required)
+      └── references/          # Supporting documentation
+          ├── {topic}.md
+          └── ...
 ```
 
-## How This Skill Is Used
+### SKILL.md Format
 
-When a user asks about building integrations with Paragon, the agent should:
+SKILL.md files must include YAML frontmatter:
 
-1. Load the skill via the `paragon-skill` skill loader.
-2. Consult `SKILL.md` for the table of contents to find the right reference.
-3. Read the relevant `references/*.md` file(s) for API details, code examples, and checklists.
-
-## Paragon API & SDK Quick Reference
-
-### Key Packages
-
-| Package | Purpose |
-|---|---|
-| `@useparagon/connect` | Frontend SDK — authenticate users, render Connect Portal |
-| `jsonwebtoken` | Server-side JWT signing for Paragon user tokens |
-
-### API Base URLs
-
-| Service | Base URL |
-|---|---|
-| ActionKit | `https://actionkit.useparagon.com/projects/{project_id}/actions` |
-| Managed Sync | `https://sync.useparagon.com/api/syncs` |
-| Permissions | `https://sync.useparagon.com/api/permissions/{syncId}/...` |
-
-### Authentication
-
-All API requests require a `Authorization: Bearer {PARAGON_JWT}` header.
-The JWT must be signed server-side with RS256 using the project's Signing Key.
-
-**JWT payload structure:**
-```json
-{
-  "sub": "<user-or-company-id>",
-  "aud": "useparagon.com/<paragon-project-id>",
-  "iat": <unix-timestamp>,
-  "exp": <unix-timestamp>
-}
+```yaml
+---
+name: {skill-name}
+description: Brief description of what this skill does
+---
 ```
 
-**Critical:** Never expose the Signing Key on the client side.
+### Writing Style
 
-## Code Style Guidelines for Paragon Integrations
+- Use clear, concise language
+- Include step-by-step checklists with `- [ ]` format
+- Provide code examples in TypeScript/JavaScript
+- Use inline comments to explain code snippets
+- Keep paragraphs short and scannable
 
-When generating code that uses Paragon APIs/SDK, follow these conventions:
+### Code Examples
 
-### Imports
+- Use TypeScript for type safety demonstrations
+- Include both inline examples and full implementation examples
+- Always specify language for code blocks (```typescript, ```bash, etc.)
+- Use realistic example data (UUIDs, actual integration names)
 
-- Use ES module imports: `import { paragon } from '@useparagon/connect'`
-- Import specific types when using TypeScript: `import { paragon, IntegrationMetadata } from '@useparagon/connect'`
-- Group imports: third-party packages first, then local modules
+### References
 
-### TypeScript & Types
+- Store detailed documentation in `references/` subdirectory
+- Use relative links between files: `[Link text](references/file.md)`
+- Cross-reference related skills when applicable
 
-- Prefer TypeScript over plain JavaScript for all new code
-- Use explicit types for Paragon SDK return values (e.g., `IntegrationMetadata[]`)
-- Avoid `any` where possible; use it only as a last resort in dynamic tool parameter contexts
-- Use `interface` for object shapes, `type` for unions and intersections
+### Formatting Standards
 
-### Async / Await
+- Use ATX-style headers (`# Header` not `Header\n===`)
+- Max 2 consecutive blank lines
+- No trailing whitespace
+- Use `-` for unordered lists
+- Number ordered lists manually for readability
 
-- Always use `async/await` over raw Promises for readability
-- All Paragon SDK calls (`paragon.authenticate`, `paragon.getIntegrationMetadata`) are async
+## Common Tasks
 
-### Error Handling
+### Adding a New Reference Document
 
-- Wrap all API calls (fetch, SDK methods) in `try/catch` blocks
-- Use `instanceof Error` checks before accessing `.message`:
-  ```typescript
-  try {
-    const res = await fetch(url, options);
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(JSON.stringify(data, null, 2));
-    }
-    return data;
-  } catch (err) {
-    if (err instanceof Error) {
-      return { error: { message: err.message } };
-    }
-    return err;
-  }
-  ```
-- Check `response.ok` after every `fetch` call; throw on non-2xx responses
-- For ActionKit LIST ACTIONS, check `errors.length === 0` before proceeding
+1. Create file in `skills/{skill-name}/references/`
+2. Link from SKILL.md with relative path
+3. Follow existing document structure
 
-### Naming Conventions
+### Updating Skill Content
 
-- **Variables/functions:** camelCase (`paragonUserToken`, `getIntegrationMetadata`)
-- **Constants/env vars:** UPPER_SNAKE_CASE (`PARAGON_PROJECT_ID`, `PARAGON_SIGNING_KEY`)
-- **ActionKit action names:** UPPER_SNAKE_CASE with integration prefix (`SLACK_SEND_DIRECT_MESSAGE`, `SALESFORCE_UPDATE_RECORD`)
-- **Integration type identifiers:** lowercase, no separators (`salesforce`, `hubspot`, `googledrive`)
+1. Edit SKILL.md for high-level changes
+2. Edit reference files for detailed changes
+3. Ensure all code examples remain valid
+4. Update README.md if installation steps change
 
-### Environment Variables
+## Important Notes
 
-Always store secrets as environment variables, never hardcode them:
-- `PARAGON_PROJECT_ID` — the project identifier from the Paragon dashboard
-- `PARAGON_SIGNING_KEY` — the RS256 private key for JWT signing
-
-### API Request Patterns
-
-- Always set `Content-Type: application/json` on POST requests
-- Use template literals for URL construction with project IDs
-- Pass the Paragon JWT via the `Authorization: Bearer` header
-
-### Frontend / React Patterns
-
-- Use the Paragon SDK methods (`paragon.connect(type)`) for OAuth flows, not raw API calls
-- Render integration catalogs using `paragon.getIntegrationMetadata()` results
-- For on-prem deployments, call `paragon.configureGlobal({ host })` before `authenticate`
-
-## Common Pitfalls
-
-1. **Signing JWT client-side** — The Signing Key must only be used in server-side code.
-2. **Missing authentication** — `paragon.authenticate()` must be called before any other SDK method.
-3. **Forgetting `format` param** — For AI agent tools, use `format=json_schema` on LIST ACTIONS.
-4. **Wrong action parameters** — Always fetch available actions first via LIST ACTIONS; use the returned parameter schema to build RUN ACTION requests.
-5. **Not checking response status** — Always verify `response.ok` and handle errors from both ActionKit and Managed Sync APIs.
-
-## Reference Navigation Guide
-
-| User Need | Start Here |
-|---|---|
-| New to Paragon, no SDK setup yet | `references/paragon-sdk-setup.md` |
-| Need to connect user integrations (OAuth) | `references/connect-integrations.md` |
-| CRUD actions on 3rd-party data | `references/actionkit.md` |
-| Bulk data ingestion / ETL pipelines | `references/managed-sync.md` |
-| Managing sync lifecycle (pause/resume/delete) | `references/sync-management.md` |
-| Building AI agent tools with integrations | `references/actionkit.md` (Example Implementation section) |
+- This is a PUBLIC repository - never include sensitive data
+- Skills are consumed by multiple agentic IDEs - keep content IDE-agnostic
+- The `assets/` directory contains images referenced by README.md
+- Follow the existing Paragon Skill as a template for new skills
