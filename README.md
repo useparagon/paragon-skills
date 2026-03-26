@@ -39,12 +39,8 @@ npx skills update
 ```
 
 
-#### Manual installation (Skip this if installing via Skills CLI)
-1. Clone this repo
-
-2. Copy the `skills/paragon-skill` directory
-
-3. Navigate to the **skills** directory of your agentic IDE
+### Manual installation (Skip this if installing via Skills CLI)
+1. Navigate to the **skills** directory of your agentic IDE
 
 ```javascript
 //for example
@@ -54,7 +50,7 @@ npx skills update
 ~/.config/opencode/skills/
 ```
 
-4. Paste the `paragon-skill` directory into your IDE's `skills` directory
+2. Clone this repo
 
 ## Start Prompting With The Skill
 You agent should naturally detect when the Paragon Skill is needed.
@@ -64,7 +60,7 @@ In some cases, it may be useful to reference the skill directly by name (i.e. "U
 ### Starter Prompts
 
 ```markdown
-Setup the Paragon SDK in my project
+Set up the Paragon SDK in my project
 ```
 
 ```markdown
@@ -72,6 +68,6 @@ Build an integration card for Google Drive
 ```
 
 ```markdown
-Setup auth for my Paragon integrations
+Set up auth for my Paragon integrations
 ```
 
