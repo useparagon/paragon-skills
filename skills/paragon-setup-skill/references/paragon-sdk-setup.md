@@ -6,26 +6,28 @@ is used to authenticate end-users with a JWT, and render an embedded UI
 component that takes users through the OAuth process for any given 3rd-party integration.
 
 The high-level steps for setting up the Paragon SDK are:
-- [ ] Install the Paragon SDK in the developer's nodejs project
-- [ ] Grab `Paragon Project ID` and `Signing Key` from Paragon dashboard and set as environment variables
-- [ ] Build a server-side endpoint to sign JWT with `Signing Key`
-- [ ] Call the `paragon.authenticate` method with the end-user's unique JWT
+- [ ] Step 0: (If the user doesn't have a Paragon account) prompt the user to sign up for Paragon 
+- [ ] Step 1: Prompt the user to grab their `Paragon Project ID` and `Signing Key` from the Paragon dashboard and set these as environment variables
+- [ ] Step 2: Install the Paragon SDK in the developer's nodejs project
+- [ ] Step 3: Build a server-side endpoint to sign JWT with `Signing Key`
+- [ ] Step 4: Call the `paragon.authenticate` method with the end-user's unique JWT
 
 These steps are further detailed in the **Checklist** below. A full **implementation example** is included after the Checklist.
 
 ## Checklist for setting up the Paragon SDK on Nodejs frontend apps
-- [ ] Ensure the Paragon SDK is installed in the developer's nodejs project
+- [ ] Step 0: Ask the user if they have a Paragon account. If they do not, direct them to [Paragon Signup](https://dashboard.useparagon.com/signup)
+
+- [ ] Step 1: Prompt developer to grab their `Paragon Project ID` and `Signing Key` from the Paragon dashboard. 
+    - Direct them to the docs if they need help: [Paragon Setup](https://docs.useparagon.com/getting-started/installing-the-connect-sdk)
+    - Generally the `Paragon Project ID` and `Signing Key` should be environment variables
+
+- [ ] Step 2: Ensure the Paragon SDK is installed in the developer's nodejs project
 
 ```bash
 npm install @useparagon/connect
 ```
 
-- [ ] Prompt developer to grab their `Paragon Project ID` and `Signing Key` from the Paragon dashboard. 
-    - Give the user the signup link if the user does not have a Paragon account: [Sign up for Paragon](https://dashboard.useparagon.com/signup)
-    - Direct them to the docs if they need help: [Paragon Setup](https://docs.useparagon.com/getting-started/installing-the-connect-sdk)
-    - Generally the `Paragon Project ID` and `Signing Key` should be environment variables
-
-- [ ] Build a server-side endpoint to sign a JWT with the `Signing Key` with the following data
+- [ ] Step 3: Build a server-side endpoint to sign a JWT with the `Signing Key` with the following data
 
 ```typescript
 {
@@ -41,7 +43,7 @@ npm install @useparagon/connect
 ```
   - **This should NOT be done on the client. The `Signing Key` should only be exposed to server side applications**
 
-- [ ] On the client-side nodejs application, the Paragon autheticate method can now be used
+- [ ] Step 4: On the client-side nodejs application, the Paragon autheticate method can now be used
 
 ```typescript
 import { paragon } from '@useparagon/connect';
@@ -62,7 +64,7 @@ paragon.configureGlobal({
 });
 ```
 
-  - The developer is now ready to get started [connecting integrations](connect-integrations.md)!
+The developer is now ready to get started [connecting integrations](connect-integrations.md)!
 
 ## Full example implementation
 ### Server side

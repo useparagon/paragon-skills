@@ -11,14 +11,13 @@
 ---
 
 # Paragon Skills
-Agents can build integrations in just minutes with Paragon Skills. The Paragon Skill
-provides your agent context with everything it needs to:
+Agents can **setup your integrations** in just minutes with Paragon Skills. The Paragon Skill provides your agent context with everything it needs to:
 
 1. Setup the Paragon SDK 
 2. Add the Connect Portal to authenticate your users 
 3. Get started with [ActionKit](https://useparagon.com/product/actionkit) and/or [Managed Sync](https://useparagon.com/product/managed-sync) to build any integration use case.
 
-Whether you're a new or existing Paragon user, give your coding agent the Paragon Skill to build new integration features or add to existing ones.
+If you're setting up Paragon for the first time, use this Skill to get up and running with your integrations.
 
 ![Paragon Skill](/assets/opencode-skill.png)
 
@@ -60,18 +59,18 @@ You agent should naturally detect when the Paragon Skill is needed.
 
 In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Skill...").
 
-### New Paragon Users
-
-For users who are implementing Paragon in their project for the first time, start by asking your agent to setup the Paragon SDK or bring up the "Connect Portal" for the integration you want to build.
+### Start prompting
+Start with these prompts in your project
 
 ```markdown
 Setup the Paragon SDK in my project
+```
 
+```markdown
 Build an integration card for Google Drive
 ```
 
-### Adding Integration Features
+```markdown
+Setup auth for my Paragon integrations
+```
 
-For users who have already built a few integrations, prompt Paragon to use [ActionKit](https://useparagon.com/product/actionkit) and [Managed Sync](https://useparagon.com/product/managed-sync) for your unique use case.
-
-![Paragon Skill Trigger](/assets/opencode-skill-trigger.png)

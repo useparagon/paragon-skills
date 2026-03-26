@@ -84,5 +84,5 @@ the 3rd-party API on their behalf!
 
 If a user is interested in 
 - Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview)
-- Using ActionKit to perform CRUD-like actions: see [ActionKit reference](actionkit.md)
-- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync reference](managed-sync.md)
+- Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview)
+- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview)
