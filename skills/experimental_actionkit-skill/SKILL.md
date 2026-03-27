@@ -24,5 +24,5 @@ Use this Skill to help the user implement ActionKit API calls in their code, by 
 ## Table of Contents
 - If a user does not have the Paragon SDK and Connect Portal for authorization set up: Direct them to use the `paragon-setup-skill`
 - If the user needs to `list actions`: [List Actions docs](https://docs.useparagon.com/actionkit/api-reference/list-actions.md)
-- If the user is ready to `run action`: [Run Actions docs](https://docs.useparagon.com/actionkit/api-reference/run-action.md)
+- If the user need to execute `run action`: [Run Actions docs](https://docs.useparagon.com/actionkit/api-reference/run-action.md)
 - If the user mentions that they would like to use a 3rd-party API that ActionKit does not currently have a pre-built action for: [Use Proxy API](https://docs.useparagon.com/apis/proxy.md)
