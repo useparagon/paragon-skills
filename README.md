@@ -52,8 +52,8 @@ npx skills update
 
 2. Clone this repo
 
-## Start Prompting With The Skill
-You agent should naturally detect when the Paragon Skill is needed.
+## Start Prompting With The Paragon Setup Skill
+You agent should naturally detect when the Paragon Setup Skill is needed.
 
 In some cases, it may be useful to reference the skill directly by name (i.e. "Using the Paragon Setup Skill...").
 
@@ -71,3 +71,8 @@ Build an integration card for Google Drive
 Set up auth for my Paragon integrations
 ```
 
+## Experimental Skills
+There are a few experimental skills - `experimental_actionkit-skill` and `experimental_managed-sync-skill` - 
+to help users implement ActionKit and Managed Sync with their agents.
+
+Try them for your POCs after you've set up your project with the `paragon-setup-skill`
