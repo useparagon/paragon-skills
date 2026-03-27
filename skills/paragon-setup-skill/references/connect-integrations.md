@@ -7,6 +7,7 @@ Connecting integrations means:
 - [ ] Step 0 (Optional): On the Paragon dashboard, enable and configure 3rd-party integrations and apps
 - [ ] Step 1: developer can retrieve enabled integrations they configured with Paragon
 - [ ] Step 2: developer can render the "Connect Portal" in their frontend application
+- [ ] Step 3: developer can display and subscribe to authentication state changes (i.e. integrations connected and disconnected)
   - The Connect Portal is an embedded UI that takes the end-user through the OAuth process to authenticate to any 3rd-party integration (i.e. Google Drive auth, Notion auth, etc.)
 
 ## How to Connect Integrations
@@ -77,6 +78,65 @@ The `paragon.connect` method is used to bring up the Connect Portal
 
 ```typescript
 paragon.connect("salesforce"); //replace salesforce with any integration type (found in the integration metadata
+```
+
+#### Step 3: Displaying account state and subscribing to changes
+If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
+
+This will return a payload like:
+
+```json
+{
+  "authenticated": true,
+  "userId": "user-id",
+  "integrations": {
+    "salesforce": {
+      "enabled": false,
+      "configuredWorkflows": {}
+    },
+    "slack": {
+      "enabled": true,
+      "configuredWorkflows": {},
+      "credentialStatus": "VALID",
+      "credentialId": "81af6717-9476-458d-8c29-f0aee7ce6d12",
+      "providerId": "TM7FL705V",
+      "providerData": {}
+    },
+    "hubspot": {
+      "enabled": false,
+      "configuredWorkflows": {}
+    }
+  },
+  "meta": {}
+}
+```
+
+Generally, the user will also want to subscribe to install/connect changes. The user can do that on their frontend by using paragon.subscribe("EVENT_NAME", callback()).
+
+```typescript
+import { paragon, AuthenticatedConnectUser } from "@useparagon/connect"
+function MyComponent() {
+  const [user, setUser] = useState<AuthenticatedConnectUser | undefined>();
+
+  // Listen for account state changes
+  useEffect(() => {
+    const listener = () => {
+      if (paragon) {
+        const authedUser = paragon.getUser();
+        if (authedUser.authenticated) {
+          setUser({ ...authedUser });
+        }
+      }
+    };
+    listener();
+    paragon?.subscribe("onIntegrationInstall", listener);
+    paragon?.subscribe("onIntegrationUninstall", listener);
+    return () => {
+      paragon?.unsubscribe("onIntegrationInstall", listener);
+      paragon?.unsubscribe("onIntegrationUninstall", listener);
+    };
+  }, [paragon]);
+}
 ```
 
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
