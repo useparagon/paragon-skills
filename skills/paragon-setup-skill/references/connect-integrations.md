@@ -65,7 +65,7 @@ The developer can use the integration metadata to build catalogs in their fronte
   {integrationMetadata.map((integration: IntegrationMetadata) => (
     <div key={integration.type} className="flex gap-4">
       <div>{integration.name}</div>
-      <button onClick={() => paragon.connect(integration.type)} />
+      <button onClick={() => paragon.connect(integration.type, {})} />
     </div>
   ))}
 </div>
@@ -77,7 +77,7 @@ The Paragon Connect Portal is a pre-built UI component that is embedded in the u
 The `paragon.connect` method is used to bring up the Connect Portal
 
 ```typescript
-paragon.connect("salesforce"); //replace salesforce with any integration type (found in the integration metadata
+paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
 ```
 
 #### Step 3: Displaying account state and subscribing to changes
@@ -143,6 +143,6 @@ After a user connects an integration, you can now use ActionKit, Managed Sync, o
 the 3rd-party API on their behalf!
 
 If a user is interested in 
-- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview)
-- Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview)
-- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview)
+- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview.md)
+- Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
+- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview.md)
