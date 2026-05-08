@@ -43,7 +43,7 @@ Before helping the user implement ActionKit, it's best to have the Paragon SDK a
 ## Table of Contents
 ### Tools API
 - If the user needs to `list Tools`: [List Tools docs](https://docs.useparagon.com/actionkit/api-reference/list-tools.md)
-- If the user need to execute `run Tool`: [Run Tools docs](https://docs.useparagon.com/actionkit/api-reference/run-tools.md)
+- If the user need to execute `run Tool`: [Run Tools docs](https://docs.useparagon.com/actionkit/api-reference/run-tool.md)
 - If the user mentions that they would like to use a 3rd-party API that ActionKit does not currently have a pre-built action for: [Use Proxy API](https://docs.useparagon.com/apis/proxy.md)
 
 ### Triggers API
