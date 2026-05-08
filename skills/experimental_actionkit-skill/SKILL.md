@@ -1,6 +1,6 @@
 ---
 name: paragon-actionkit-skill
-description: Skill for using Paragon's ActionKit API for 3rd-party actions like "Send Slack Message" or "Update Salesforce Record"
+description: Skill for using Paragon's ActionKit API for 3rd-party Tools and Triggers, Tools for CRUD-like operations in a 3rd-party API and Triggers for subscribing to 3rd-party webhooks
 ---
 
 ## When to use this skill
@@ -9,12 +9,17 @@ Use this Skill to help the user implement ActionKit API calls in their code, by 
 ## ActionKit Overview
 ActionKit exposes thousands of pre-built Tools (actions in a third-party system) and Triggers (events in a third-party system) across integrations through one consistent interface.
 
-Some examples of ActionKit actions are: 
+Some examples of ActionKit Tools are: 
 - `NOTION_CREATE_PAGE`
 - `SALESFORCE_UPDATE_RECORD`
 - `SLACK_SEND_DIRECT_MESSAGE`
 
-The full list of available actions can be found in the [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
+Some examples of Action Triggers are: 
+- `NOTION_PAGE_CREATED`
+- `SALESFORCE_RECORD_CREATED`
+- `SLACK_MESSAGE_RECEIVED`
+
+The full list of available Tools and Triggers can be found in the [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
 
 Popular use cases for ActionKit include
 1. AI agent tool calling: Expose all actions as function tools to your AI agent over the API or MCP server, with agent-optimized descriptions for tool calling accuracy.
@@ -36,6 +41,14 @@ Before helping the user implement ActionKit, it's best to have the Paragon SDK a
 - [ ] If the user does have the Paragon SDK and authorization set up: Proceed with using the resources in the "Table of Contents" to help implement ActionKit
 
 ## Table of Contents
-- If the user needs to `list actions`: [List Actions docs](https://docs.useparagon.com/actionkit/api-reference/list-actions.md)
-- If the user need to execute `run action`: [Run Actions docs](https://docs.useparagon.com/actionkit/api-reference/run-action.md)
+### Tools API
+- If the user needs to `list Tools`: [List Tools docs](https://docs.useparagon.com/actionkit/api-reference/list-tools.md)
+- If the user need to execute `run Tool`: [Run Tools docs](https://docs.useparagon.com/actionkit/api-reference/run-tool.md)
 - If the user mentions that they would like to use a 3rd-party API that ActionKit does not currently have a pre-built action for: [Use Proxy API](https://docs.useparagon.com/apis/proxy.md)
+
+### Triggers API
+- If the user needs to `list Triggers`: [List Triggers docs](https://docs.useparagon.com/actionkit/triggers/api-reference/list-available-triggers.md)
+- If the user needs to `subscribe to a Trigger`: [Subscribe to Trigger docs](https://docs.useparagon.com/actionkit/triggers/api-reference/subscribe-to-trigger.md)
+- If the user needs to see `example payload for a Trigger`: [Example Trigger payload docs](https://docs.useparagon.com/actionkit/triggers/api-reference/get-example-payload)
+- How to receive Trigger webhooks can be found: [Receiving Webhooks docs](https://docs.useparagon.com/actionkit/triggers/receiving-webhooks.md)
+- Other useful endpoints such as `listing subscribed Triggers`, `updating a Trigger`, and `unsubscribing to a Trigger` can be found crawling the [Triggers Overview](https://docs.useparagon.com/actionkit/triggers/overview.md)
