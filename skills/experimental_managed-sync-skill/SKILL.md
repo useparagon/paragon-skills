@@ -30,19 +30,25 @@ Before helping the user implement Managed Sync, it's best to have the Paragon SD
 
 - [ ] If the user does have the Paragon SDK and authorization set up: Proceed with using the resources in the "Table of Contents" to help implement Managed Sync
 
+## Important Managed Sync behavior
+- [ ] If the user is polling the `Get Sync Status` endpoint, treat `RATE_LIMITED` as a temporary backoff state rather than a terminal failure
+- [ ] If the status payload includes `rateLimitBackoffMs`, wait at least that long before polling again
+- [ ] If the user is handling Sync webhooks, note that `sync_errored` is only sent for non-recoverable errors; transient rate limits, temporary network failures, and expired access tokens are retried automatically by Managed Sync
+- [ ] If a webhook error includes code `10007`, explain that the root resource selected when the Sync was created is no longer accessible and that the Sync should be recreated with a valid root resource
+
 
 ## Table of Contents
 
 ### Using the Sync API - Basic Usage
 - Overview on how the Sync API works to start syncing files, CRM records, tickets, etc.: [Sync API Overview](https://docs.useparagon.com/managed-sync/sync-api.md)
 - Enable a sync: [Enable Sync](https://docs.useparagon.com/managed-sync/api/enable-a-sync.md)
-- Check sync status: [Sync Status](https://docs.useparagon.com/managed-sync/api/get-sync-status.md)
+- Check sync status, including `RATE_LIMITED` and `rateLimitBackoffMs`: [Sync Status](https://docs.useparagon.com/managed-sync/api/get-sync-status.md)
 - Pull records from a sync: [Pull Synced Records](https://docs.useparagon.com/managed-sync/api/pull-synced-records.md)
 - Get metadata for a specific record: [Get Synced Record](https://docs.useparagon.com/managed-sync/api/get-synced-record.md)
 - Download a file associated with a synced record: [Download Synced File](https://docs.useparagon.com/managed-sync/api/download-content.md) 
 
 ### Sync Webhooks
-- Receiving webhooks for when records are created, updated, or deleted from a Sync: [Sync Webhooks](https://docs.useparagon.com/managed-sync/webhooks.md)
+- Receiving webhooks for when records are created, updated, or deleted from a Sync, including non-recoverable error codes like `10007`: [Sync Webhooks](https://docs.useparagon.com/managed-sync/webhooks.md)
 
 ### Sync APIs for Managing Active Syncs 
 - List all syncs: [List Syncs](https://docs.useparagon.com/managed-sync/api/list-syncs.md)

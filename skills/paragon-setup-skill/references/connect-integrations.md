@@ -80,6 +80,19 @@ The `paragon.connect` method is used to bring up the Connect Portal
 paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
 ```
 
+#### ServiceNow authentication options
+When helping a user connect ServiceNow, note that Paragon supports both OAuth 2.0 and username/password authentication for that integration.
+
+- [ ] If the user wants ServiceNow OAuth 2.0, tell them they need to create an inbound OAuth application in ServiceNow and add Paragon's redirect URL: `https://passport.useparagon.com/oauth`
+- [ ] If the user wants the Connect Portal to default to the OAuth flow, they can pass `accountType: "oauth"` when calling `paragon.connect`
+- [ ] If the user needs the full ServiceNow-specific setup steps, direct them to the [ServiceNow integration guide](https://docs.useparagon.com/resources/integrations/servicenow)
+
+```typescript
+paragon.connect("servicenow", {
+  accountType: "oauth",
+});
+```
+
 #### Step 3: Displaying account state and subscribing to changes
 If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
 
