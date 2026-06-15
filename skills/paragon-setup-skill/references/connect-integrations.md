@@ -139,6 +139,35 @@ function MyComponent() {
 }
 ```
 
+#### Step 4: Loading post-auth options in a headless install flow
+If the user is building a headless Connect Portal with `paragon.installFlow.start`, the `postOptions` stage now includes `credentialId` once OAuth completes. Use that `credentialId` as `selectedCredentialId` when loading dynamic options for post-auth inputs, so the SDK queries the newly connected account instead of another credential for the same integration.
+
+```typescript
+paragon.installFlow.start("jira", {
+  async onNext(stage) {
+    if (stage.stage !== "postOptions" || !stage.credentialId) {
+      return;
+    }
+
+    const dynamicInput = stage.options.find(
+      (option) => option.type === "DYNAMIC_ENUM" && "sourceType" in option
+    );
+
+    if (!dynamicInput?.sourceType) {
+      return;
+    }
+
+    const siteOptions = await paragon.getFieldOptions({
+      integration: "jira",
+      action: dynamicInput.sourceType,
+      selectedCredentialId: stage.credentialId,
+    });
+
+    console.log(siteOptions.data);
+  },
+});
+```
+
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
 the 3rd-party API on their behalf!
 

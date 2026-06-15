@@ -48,6 +48,7 @@ Before helping the user implement ActionKit, it's best to have the Paragon SDK a
 
 ### Triggers API
 - If the user needs to `list Triggers`: [List Triggers docs](https://docs.useparagon.com/actionkit/triggers/api-reference/list-available-triggers.md)
+- `List Triggers` returns triggers for integrations the user has already connected by default. If the user needs to discover triggers for every integration enabled on the project, have them pass `limit_to_available=false`.
 - If the user needs to `subscribe to a Trigger`: [Subscribe to Trigger docs](https://docs.useparagon.com/actionkit/triggers/api-reference/subscribe-to-trigger.md)
 - If the user needs to see `example payload for a Trigger`: [Example Trigger payload docs](https://docs.useparagon.com/actionkit/triggers/api-reference/get-example-payload)
 - How to receive Trigger webhooks can be found: [Receiving Webhooks docs](https://docs.useparagon.com/actionkit/triggers/receiving-webhooks.md)
