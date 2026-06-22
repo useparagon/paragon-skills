@@ -3,7 +3,7 @@ name: paragon-managed-sync-skill
 description: Skill for using Paragon's Managed Sync for ingesting and syncing 3rd-party data like Google Drive files or CRM records
 ---
 ## When to use this skill
-Use this Skill to help the user implement Managed Sync with the Sync API and the Permissions API, using the references in the Table of Contents.
+Use this Skill to help the user implement Managed Sync with the Sync API, the Permissions API, and integration-specific sync configuration using the references in the Table of Contents.
 
 ## Managed Sync Overview
 Managed Sync is a set of APIs for developers to spin up data pipelines that pull their 
@@ -50,6 +50,10 @@ Before helping the user implement Managed Sync, it's best to have the Paragon SD
 - Re-enable a sync: [Re-enable Sync](https://docs.useparagon.com/managed-sync/api/reenable-sync.md)
 - Update Credential on a sync: [Update Sync](https://docs.useparagon.com/managed-sync/api/update-sync.md)
 - Delete a sync: [Delete Sync](https://docs.useparagon.com/managed-sync/api/delete-sync.md)
+
+### Integration-Specific Sync Configuration
+- If the user needs provider-specific pipeline parameters, required scopes, or synced object details: [Integration-specific Sync Configuration](references/integration-specific-sync-configuration.md)
+- Zoho CRM pipeline configuration, including `backoffAtCreditPercentage`: [Zoho CRM integration docs](https://docs.useparagon.com/managed-sync/integrations/zohocrm)
 
 ### Permissions API (file storage integration specific)
 - Overview on how the Permissions API works to check user access to synced files: [Permissions API Overview](https://docs.useparagon.com/managed-sync/permissions-api.md)
