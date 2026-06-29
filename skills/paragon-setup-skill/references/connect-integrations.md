@@ -4,7 +4,7 @@
 This reference covers how to connect integrations **AFTER the Paragon SDK has been setup**.
 Connecting integrations means:
 
-- [ ] Step 0 (Optional): On the Paragon dashboard, enable and configure 3rd-party integrations and apps
+- [ ] Step 0 (Optional): On the Paragon dashboard, add and configure the 3rd-party integrations and apps the developer wants to support
 - [ ] Step 1: developer can retrieve enabled integrations they configured with Paragon
 - [ ] Step 2: developer can render the "Connect Portal" in their frontend application
 - [ ] Step 3: developer can display and subscribe to authentication state changes (i.e. integrations connected and disconnected)
@@ -13,15 +13,25 @@ Connecting integrations means:
 ## How to Connect Integrations
 ### Step 0 (Optional) Enabling and configuring integrations
 
-If the developer has not done so, visit the [Paragon Dashboard](https://dashboard.useparagon.com) to enable 3rd-party integrations they want to connect to.
+If the developer has not done so, visit the [Paragon Dashboard](https://dashboard.useparagon.com) to add the 3rd-party integrations they want to connect to.
 
 Provide the developer the [docs on adding integrations](https://docs.useparagon.com/getting-started/adding-an-integration) for more details.
 
-For development, the developer does NOT need to create & configure a 3rd-party OAuth application for their integration (i.e. GitHub OAuth app, Slack OAuth app, etc). Paragon can provide developer credentials for most integrations.
+- [ ] Open **Catalog** in the dashboard sidebar
+- [ ] Select the integration provider they want to add
+- [ ] Click **Connect** to add that integration to the project
+- [ ] Create the provider's developer app if they are bringing their own credentials
+- [ ] Use `https://passport.useparagon.com/oauth` as the provider redirect URL when the integration requires OAuth
+- [ ] Open the integration in Paragon and add the provider app credentials under **App Configuration**
+- [ ] Review the integration's requested permission scopes under **Integration Settings**
+
+For development, the developer does NOT need to create & configure a 3rd-party OAuth application for their integration (i.e. GitHub OAuth app, Slack OAuth app, etc). Paragon can provide development keys for most integrations.
 
 In production, the developer WILL NEED to create & configure their own 3rd-party OAuth application.
 
-### Step 1: Retrieving enabled integrations**
+If the developer is using their own app credentials, remind them that the scopes configured in Paragon should also be enabled in the third-party provider's developer app settings.
+
+### Step 1: Retrieving enabled integrations
 
 Use the Paragon SDK's `Get Integration Metadata` method to retrieve data on all of the developer's enabled integrations 
 
@@ -74,10 +84,10 @@ The developer can use the integration metadata to build catalogs in their fronte
 ### Step 2: Render the embedded Connect Portal
 The Paragon Connect Portal is a pre-built UI component that is embedded in the user's frontend app.
 
-The `paragon.connect` method is used to bring up the Connect Portal
+The `paragon.connect` method is used to bring up the Connect Portal.
 
 ```typescript
-paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
+paragon.connect("salesforce", {}); // replace salesforce with any integration type from the integration metadata
 ```
 
 #### Step 3: Displaying account state and subscribing to changes
@@ -142,7 +152,7 @@ function MyComponent() {
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
 the 3rd-party API on their behalf!
 
-If a user is interested in 
-- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview.md)
-- Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
-- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview.md)
+If a user is interested in
+- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview)
+- Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview)
+- Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview)
