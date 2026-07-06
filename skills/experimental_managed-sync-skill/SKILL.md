@@ -18,6 +18,12 @@ For file storage integration data, the Permissions API is an API to check permis
 of any synced file. Paragon manages a graph database behind the scenes, so developers 
 can get and check up-to-date permissions without managing that data.
 
+## Implementation notes
+- [ ] Managed Sync requires a Paragon User Token with an `aud` claim that matches the Paragon hostname and project ID.
+- [ ] If the user has connected multiple accounts for one integration, read `user.integrations[integration].allCredentials` from `paragon.getUser()` and pass the selected `credentialId` when enabling a Sync.
+- [ ] Plan for the full Sync lifecycle: initial sync completion, incremental `record_created` and `record_updated` events, periodic `record_deleted` events, and non-recoverable `sync_errored` or `record_errored` webhook handling.
+- [ ] When handling Sync webhook failures, use the stable error `code` field for recovery logic and prompt users to reconnect credentials when the error indicates an invalid or deleted account.
+
 ## Prerequisites
 Managed Sync is built on top of Paragon's managed authentication and monitoring. When using any Sync APIs or Permissions APIs, 
 a JWT with a unique end-user ID is required so that Paragon knows which end-users data to sync.

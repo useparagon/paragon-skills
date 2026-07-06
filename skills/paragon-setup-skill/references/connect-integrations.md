@@ -83,6 +83,8 @@ paragon.connect("salesforce", {}); //replace salesforce with any integration typ
 #### Step 3: Displaying account state and subscribing to changes
 If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
 
+If the developer is using Multi-Account Authorization, `paragon.getUser()` also returns `allCredentials` for each integration. That lets the developer render multiple connected accounts in their UI and pass a specific `credentialId` into features like Managed Sync when one account should be targeted explicitly.
+
 This will return a payload like:
 
 ```json
@@ -96,6 +98,14 @@ This will return a payload like:
     },
     "slack": {
       "enabled": true,
+      "allCredentials": [
+        {
+          "id": "81af6717-9476-458d-8c29-f0aee7ce6d12",
+          "status": "VALID",
+          "providerId": "TM7FL705V",
+          "providerData": {}
+        }
+      ],
       "configuredWorkflows": {},
       "credentialStatus": "VALID",
       "credentialId": "81af6717-9476-458d-8c29-f0aee7ce6d12",
@@ -110,6 +120,8 @@ This will return a payload like:
   "meta": {}
 }
 ```
+
+If the user needs to target one specific connected account, the `credentialId` can be read from `user.integrations[integration].allCredentials[n].id`.
 
 Generally, the user will also want to subscribe to install/connect changes. The user can do that on their frontend by using paragon.subscribe("EVENT_NAME", callback()).
 

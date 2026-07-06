@@ -28,6 +28,12 @@ Popular use cases for ActionKit include
 
 3. Integrations for your workflow product: Expose all actions as integration nodes in your workflow automation product/feature by wrapping ActionKit’s input schemas.
 
+## Implementation notes
+- [ ] For paginated `list` and `search` tools, inspect the tool schema for `paginationParameters` before writing paging logic.
+- [ ] Prefer `paginationParameters.pageCursor` and `paginationParameters.limit` for new implementations when the action supports them.
+- [ ] Treat `nextPageCursor` as an opaque value and continue paging until it is `null` or otherwise absent.
+- [ ] If a user's existing implementation already sends action-specific paging fields, note that those fields may still work, but new code should follow the standardized pagination shape from the current API changelog.
+
 ## Prerequisites
 ActionKit is built on top of Paragon's managed authentication and monitoring. When using ActionKit, 
 a JWT with a unique end-user ID is required so that Paragon knows who the action should be run on behalf of.
