@@ -22,6 +22,8 @@ can get and check up-to-date permissions without managing that data.
 Managed Sync is built on top of Paragon's managed authentication and monitoring. When using any Sync APIs or Permissions APIs, 
 a JWT with a unique end-user ID is required so that Paragon knows which end-users data to sync.
 
+Managed Sync also requires the `aud` claim on the Paragon User Token to match the Paragon hostname and project ID.
+
 Before helping the user implement Managed Sync, it's best to have the Paragon SDK and Connect Portal setup.
 
 - [ ] Check the user's project for "@useparagon/connect" in their `package.json` or references of `paragon.authenticate` in their frontend codebase
