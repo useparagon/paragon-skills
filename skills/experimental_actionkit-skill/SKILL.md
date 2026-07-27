@@ -28,6 +28,12 @@ Popular use cases for ActionKit include
 
 3. Integrations for your workflow product: Expose all actions as integration nodes in your workflow automation product/feature by wrapping ActionKit’s input schemas.
 
+## Implementation notes
+- [ ] For AI agent tool calling, prefer `format=json_schema` from the `List Tools` endpoint so the returned schema can be passed directly to the model.
+- [ ] For end-user configuration UIs such as workflow builders, prefer `format=paragon` and render the returned Paragon input types instead of assuming raw JSON Schema widgets.
+- [ ] Expect polymorphic tools in `json_schema` format to split generic actions into integration-specific variants (for example, `SALESFORCE_CREATE_RECORD` becomes tools like `SALESFORCE_CREATE_OPPORTUNITY` and `SALESFORCE_CREATE_ANY`).
+- [ ] When running a polymorphic tool, either the generic tool name or the split-out tool name can be used as long as the required parameters are supplied.
+
 ## Prerequisites
 ActionKit is built on top of Paragon's managed authentication and monitoring. When using ActionKit, 
 a JWT with a unique end-user ID is required so that Paragon knows who the action should be run on behalf of.

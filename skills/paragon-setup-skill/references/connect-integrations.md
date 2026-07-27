@@ -80,6 +80,12 @@ The `paragon.connect` method is used to bring up the Connect Portal
 paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
 ```
 
+`paragon.connect` also accepts install options that are useful in more advanced setups:
+
+- [ ] Pass `accountType` when an integration supports multiple account types and the developer wants to skip the chooser (for example, default vs. sandbox Salesforce).
+- [ ] Pass `externalId` when the developer wants a new connected account to be associated with an identifier from their own system.
+- [ ] Pass `selectedCredentialId` when the developer wants to reopen or manage a specific connected account in the Connect Portal.
+
 #### Step 3: Displaying account state and subscribing to changes
 If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
 
