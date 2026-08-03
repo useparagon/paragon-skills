@@ -143,6 +143,6 @@ After a user connects an integration, you can now use ActionKit, Managed Sync, o
 the 3rd-party API on their behalf!
 
 If a user is interested in 
-- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview.md)
+- Building Workflows: direct them to Paragon's [Workflow docs](https://docs.useparagon.com/workflows/overview.md). Mention that workflows can be built in the visual Workflow Builder or in Paragraph code, and can be triggered by App Events or Integration Triggers.
 - Using ActionKit to perform CRUD-like actions: see [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
 - Using Managed Sync to ingest & sync large volumes of 3rd-party data: see [Managed Sync docs](https://docs.useparagon.com/managed-sync/overview.md)
