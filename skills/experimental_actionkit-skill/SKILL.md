@@ -15,9 +15,9 @@ Some examples of ActionKit Tools are:
 - `SLACK_SEND_DIRECT_MESSAGE`
 
 Some examples of Action Triggers are: 
-- `NOTION_PAGE_CREATED`
-- `SALESFORCE_RECORD_CREATED`
-- `SLACK_MESSAGE_RECEIVED`
+- `NOTION_TRIGGER_PAGE_CREATED`
+- `SALESFORCE_TRIGGER_RECORD_CREATED`
+- `SLACK_TRIGGER_MESSAGE_RECEIVED`
 
 The full list of available Tools and Triggers can be found in the [ActionKit docs](https://docs.useparagon.com/actionkit/overview.md)
 
