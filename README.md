@@ -71,6 +71,19 @@ Build an integration card for Google Drive
 Set up auth for my Paragon integrations
 ```
 
+## Paragraph Workflow Builder
+Use `paragraph-workflow-builder` when authoring or editing Paragon Paragraph workflows in TypeScript — triggers, core steps, integration actions, and orchestration with `@useparagon/core`.
+
+### Starter Prompts
+
+```markdown
+Create a new Paragraph workflow that triggers on a HubSpot contact created event
+```
+
+```markdown
+Add a RequestStep and ConditionalStep to this workflow
+```
+
 ## Experimental Skills
 There are a few experimental skills - `experimental_actionkit-skill` and `experimental_managed-sync-skill` - 
 to help users implement ActionKit and Managed Sync with their agents.
