@@ -18,6 +18,12 @@ For file storage integration data, the Permissions API is an API to check permis
 of any synced file. Paragon manages a graph database behind the scenes, so developers 
 can get and check up-to-date permissions without managing that data.
 
+When helping with RAG or search implementations, guide the user toward the right Permissions API pattern:
+- For smaller result sets, `List Objects` is usually enough
+- For users with access to more than 1000 objects in one Sync, prefer `Streamed List Objects`
+- For users with multiple Permission Syncs that should be queried together, prefer `Streamed List Objects (All Syncs)`
+- For ranked search results, `Batch Check Access` is usually the right post-filtering step
+
 ## Prerequisites
 Managed Sync is built on top of Paragon's managed authentication and monitoring. When using any Sync APIs or Permissions APIs, 
 a JWT with a unique end-user ID is required so that Paragon knows which end-users data to sync.
@@ -59,4 +65,6 @@ Before helping the user implement Managed Sync, it's best to have the Paragon SD
 - Batch check multiple user object relationships: [Batch Check Access](https://docs.useparagon.com/managed-sync/api/batch-check-access.md)
 - List users that have access to a synced object: [List Users](https://docs.useparagon.com/managed-sync/api/list-users.md)
 - List synced objects that a user has access to: [List Objects](https://docs.useparagon.com/managed-sync/api/list-objects.md)
+- Stream accessible object IDs from a single Permission Sync when result sets are large: [Streamed List Objects](https://docs.useparagon.com/managed-sync/api/streamed-list-objects)
+- Stream accessible object IDs across all of a Connected User's Permission Syncs: [Streamed List Objects (All Syncs)](https://docs.useparagon.com/managed-sync/api/streamed-list-objects-all-syncs)
 - Get all users and group relationships associated with an object by role: [Expand Relationship](https://docs.useparagon.com/managed-sync/api/expand)
