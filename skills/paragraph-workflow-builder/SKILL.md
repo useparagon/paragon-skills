@@ -13,12 +13,21 @@ description: >-
 
 ## When to use
 
-Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard. For **integration config** only (`config.ts` / `inputs.ts`), use the project skill **paragon-paragraph-custom-integrations**.
+Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard.
+
+If the request also touches **integration config** files like `config.ts` or `inputs.ts`, keep that work in the same repo and anchor it to the live Paragraph docs rather than looking for a separate skill. Recent Paragraph updates make three config rules easy to miss:
+
+- Keep custom integration `slug` values stable. They are now immutable identifiers and should not be recomputed from a renamed display name.
+- Put provider-specific OAuth query params like `access_type=offline` under `requestOptions.authorizationCodeOptions.configuration.queryParams`.
+- Preserve `showWatermark` when it is already present in a custom integration config.
 
 **Official references**
 
 - [Defining workflows](https://docs.useparagon.com/paragraph/defining-workflows) — structure, orchestration, conditions, fan-out, reusing steps.
 - [@useparagon/core glossary](https://docs.useparagon.com/paragraph/reference/useparagon-core) — triggers and step constructors, inputs/outputs.
+- [Custom Integrations](https://docs.useparagon.com/resources/custom-integrations.md) — custom provider setup, request auth, and SDK usage.
+- [User-Configured OAuth](https://docs.useparagon.com/resources/user-configured-oauth.md) — account type handling and user-supplied OAuth credentials.
+- [Paragraph release notes](https://docs.useparagon.com/changelog/paragraph) — current CLI and `config.ts` behavior changes.
 - Doc index for deeper pages: [llms.txt](https://docs.useparagon.com/llms.txt).
 
 ---
