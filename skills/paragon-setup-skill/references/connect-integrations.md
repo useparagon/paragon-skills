@@ -80,6 +80,12 @@ The `paragon.connect` method is used to bring up the Connect Portal
 paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
 ```
 
+If the user is building a **Headless Connect Portal** instead of rendering Paragon's hosted UI:
+
+- [ ] Use [`paragon.getSourcesForInput`](https://docs.useparagon.com/apis/api-reference#getsourcesforinput) to discover the data sources needed for dynamic dropdowns, combo inputs, and field mapping inputs
+- [ ] Pass the returned source objects to [`paragon.getFieldOptions`](https://docs.useparagon.com/apis/api-reference#getfieldoptions) when loading options
+- [ ] Register any app-owned dropdown or field mapping loaders once with [`paragon.setDataSources`](https://docs.useparagon.com/apis/api-reference#setdatasources) after enabling the [Headless Connect Portal](https://docs.useparagon.com/connect-portal/headless-connect-portal.md)
+
 #### Step 3: Displaying account state and subscribing to changes
 If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
 
@@ -138,6 +144,8 @@ function MyComponent() {
   }, [paragon]);
 }
 ```
+
+If the user needs to react to a **specific connected account**, remind them that the `onIntegrationInstall` and `onIntegrationUninstall` event payloads now include both `credentialId` and `credential`. That matters for Multi-Account Authorization and post-install flows where the app needs to know exactly which account changed.
 
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
 the 3rd-party API on their behalf!
