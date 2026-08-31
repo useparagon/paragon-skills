@@ -80,6 +80,21 @@ The `paragon.connect` method is used to bring up the Connect Portal
 paragon.connect("salesforce", {}); //replace salesforce with any integration type (found in the integration metadata
 ```
 
+### Optional: Build a Headless Connect Portal
+
+If the developer needs a fully custom install/settings UI instead of the embedded portal, use the SDK's Headless mode.
+
+```typescript
+paragon.setHeadless(true);
+```
+
+When using Headless mode:
+
+- Call `paragon.getIntegrationConfig(...)` to inspect available install stages, workflows, and user settings for an integration.
+- For dynamic dropdowns, combo inputs, and field mappings, prefer `paragon.getSourcesForInput(integration, input)` and pass the returned source objects into `paragon.getFieldOptions(...)`.
+- If the UI needs custom dropdown or field-mapping loaders, register them once with `paragon.setDataSources(...)` after `paragon.setHeadless(true)` and before rendering inputs.
+- For multi-account flows, keep track of the `credentialId` returned by `paragon.getUser()` and pass it back as `selectedCredentialId` when reopening or replacing a specific connected account.
+
 #### Step 3: Displaying account state and subscribing to changes
 If the user wants the status of an integration (if the end-user has connected to an integration or not), they can use `paragon.getUser()`
 
@@ -138,6 +153,8 @@ function MyComponent() {
   }, [paragon]);
 }
 ```
+
+If the developer expects to support multiple connected accounts for the same integration or needs to reopen settings for a specific connection later, they should persist the returned `credentialId` for that account.
 
 After a user connects an integration, you can now use ActionKit, Managed Sync, or Workflows to interact with 
 the 3rd-party API on their behalf!

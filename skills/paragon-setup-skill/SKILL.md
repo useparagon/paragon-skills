@@ -18,7 +18,7 @@ HubSpot integrations in their product.
 
 ## Table of Contents
 - Start here if user does not have Paragon setup in their project: [Setting up the Paragon SDK](references/paragon-sdk-setup.md)
-- If users need to start connecting their users in their frontend: [Connecting integrations](references/connect-integrations.md)
+- If users need to start connecting their users in their frontend, including embedded or headless Connect Portal flows: [Connecting integrations](references/connect-integrations.md)
 
 If users have already setup their Paragon SDK and are ready to start building the integration logic in their application (i.e. using the integration's APIs and webooks):
 1. Ask the user for their integration use case

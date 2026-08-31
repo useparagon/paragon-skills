@@ -13,7 +13,7 @@ description: >-
 
 ## When to use
 
-Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard. For **integration config** only (`config.ts` / `inputs.ts`), use the project skill **paragon-paragraph-custom-integrations**.
+Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard. When a task also touches adjacent Paragraph integration files like `config.ts` or `inputs.ts`, keep those edits aligned with the official Paragraph docs in this skill; this repo does not include a separate custom-integrations skill.
 
 **Official references**
 
@@ -29,6 +29,17 @@ Use for **workflow definitions** in a Paragraph repo: files under `src/integrati
 2. New workflow files live in **`src/integrations/<integration>/workflows/`**.
 3. Keep **`readonly id`** as generated; Paragon maintains it.
 4. List workflow classes in that integration’s **`config.ts`** in **`workflowDisplayOrder`** so they appear in the Connect Portal and dashboard.
+
+---
+
+## Integration config files (`config.ts` / `inputs.ts`)
+
+When a workflow change also requires integration-level config edits:
+
+1. Treat a custom integration’s identifier / `slug` as stable once it exists. Renaming display copy should not be used to change import paths or the identifier passed to `paragon.connect(...)`.
+2. Preserve config-only flags already present in `config.ts`, including `showWatermark` for custom integrations.
+3. Keep **`workflowDisplayOrder`** aligned with the workflows that should appear in the Connect Portal and dashboard.
+4. Update `inputs.ts` when install-time settings or shared workflow settings change, and avoid renaming existing field-mapping or dynamic input keys unless the downstream portal configuration is being migrated deliberately.
 
 ---
 
@@ -132,6 +143,23 @@ Runs sandboxed code: must be **self-contained**; pass data via **`parameters`**.
 ## Reusing steps across workflows
 
 Put shared helpers under a top-level **`src/<something>/`** folder **not** named `integrations` (e.g. `src/common/`), export step factories, import from workflows. See [Reusing steps](https://docs.useparagon.com/paragraph/defining-workflows#reusing-steps). For secrets inside shared code, patterns using `Execution` appear in the same doc page.
+
+---
+
+## Build, pull, and push safely
+
+When maintaining a Paragraph repo around workflow changes:
+
+```bash
+npm install -g @useparagon/cli
+para install --sync-versions
+para build
+```
+
+- Run **`para build`** after workflow or config edits to catch type and serialization issues before syncing.
+- Commit pending local changes before **`para pull`**; it can overwrite local edits and remove integrations or workflows that are absent from the dashboard source.
+- Prefer **`para push --dry-run --debug`** when validating a sync, then run **`para push`** once the diff looks correct.
+- Do not hand-edit `project.json` or generated build artifacts like `out/build.json` to move integrations between projects or environments.
 
 ---
 
