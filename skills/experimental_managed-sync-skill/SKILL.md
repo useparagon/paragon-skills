@@ -18,11 +18,44 @@ For file storage integration data, the Permissions API is an API to check permis
 of any synced file. Paragon manages a graph database behind the scenes, so developers 
 can get and check up-to-date permissions without managing that data.
 
+Some Managed Sync integrations also have integration-specific behavior that materially
+changes how developers should configure syncs:
+- SharePoint file syncs can use `useWebhooks: true` for near-real-time updates to file
+  records and permission relationships.
+- ServiceNow knowledge base article syncs can index Permissions API relationships
+  automatically, in addition to syncing files.
+
 When helping with RAG or search implementations, guide the user toward the right Permissions API pattern:
 - For smaller result sets, `List Objects` is usually enough
 - For users with access to more than 1000 objects in one Sync, prefer `Streamed List Objects`
 - For users with multiple Permission Syncs that should be queried together, prefer `Streamed List Objects (All Syncs)`
 - For ranked search results, `Batch Check Access` is usually the right post-filtering step
+
+## Integration-specific guidance
+
+### SharePoint
+- If the user needs low-latency search, retrieval, or permission updates, recommend
+  `useWebhooks: true` on the SharePoint sync so Paragon uses Microsoft change
+  notifications instead of waiting for the next incremental sync.
+- When SharePoint is used with the Permissions API, call out that
+  `Sites.Read.All`, `Files.Read.All`, `User.Read.All`, and `Group.Read.All` should
+  be configured as **Application Permissions** in Azure AD. If they also want
+  real-time sharing or permission change updates, they must add
+  `Sites.FullControl.All` as an Application Permission too.
+- `User.Read.All` and `Group.Read.All` are optional if the user only needs file
+  content syncs, but they are needed for organization and group-based permission
+  updates.
+
+### ServiceNow
+- ServiceNow knowledge base article syncs can populate the Permissions API
+  automatically; mention this when the user needs permission-aware retrieval over
+  ServiceNow articles.
+- For Permissions API calls on ServiceNow content, use the ServiceNow user's email
+  address as the `user` identifier. If `sys_user.email` is blank, a ServiceNow
+  `user_name` that is formatted as an email address may be used instead.
+- If the user reports missing ServiceNow permissions, check whether the connected
+  account can read the relevant knowledge base permission tables, user criteria
+  tables, `sys_user`, and related membership tables.
 
 ## Prerequisites
 Managed Sync is built on top of Paragon's managed authentication and monitoring. When using any Sync APIs or Permissions APIs, 
@@ -68,3 +101,7 @@ Before helping the user implement Managed Sync, it's best to have the Paragon SD
 - Stream accessible object IDs from a single Permission Sync when result sets are large: [Streamed List Objects](https://docs.useparagon.com/managed-sync/api/streamed-list-objects)
 - Stream accessible object IDs across all of a Connected User's Permission Syncs: [Streamed List Objects (All Syncs)](https://docs.useparagon.com/managed-sync/api/streamed-list-objects-all-syncs)
 - Get all users and group relationships associated with an object by role: [Expand Relationship](https://docs.useparagon.com/managed-sync/api/expand)
+
+### Integration-specific docs
+- SharePoint sync setup and `useWebhooks` behavior: [SharePoint integration docs](https://docs.useparagon.com/managed-sync/integrations/sharepoint.md)
+- ServiceNow sync setup and knowledge base permissions support: [ServiceNow integration docs](https://docs.useparagon.com/managed-sync/integrations/servicenow.md)
