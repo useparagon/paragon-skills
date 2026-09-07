@@ -13,11 +13,12 @@ description: >-
 
 ## When to use
 
-Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard. For **integration config** only (`config.ts` / `inputs.ts`), use the project skill **paragon-paragraph-custom-integrations**.
+Use for **workflow definitions** in a Paragraph repo: files under `src/integrations/<integration>/workflows/`, triggers, steps, branching, and wiring to the Paragon dashboard. If the user also needs to edit integration config files like `config.ts` or `inputs.ts`, use the generated integration types plus the official integration-definition docs; this skill stays focused on workflow code.
 
 **Official references**
 
 - [Defining workflows](https://docs.useparagon.com/paragraph/defining-workflows) — structure, orchestration, conditions, fan-out, reusing steps.
+- [Defining integrations](https://docs.useparagon.com/paragraph/defining-integrations) — integration-level `config.ts` / `inputs.ts`, including field-mapper input types.
 - [@useparagon/core glossary](https://docs.useparagon.com/paragraph/reference/useparagon-core) — triggers and step constructors, inputs/outputs.
 - Doc index for deeper pages: [llms.txt](https://docs.useparagon.com/llms.txt).
 
@@ -29,6 +30,10 @@ Use for **workflow definitions** in a Paragraph repo: files under `src/integrati
 2. New workflow files live in **`src/integrations/<integration>/workflows/`**.
 3. Keep **`readonly id`** as generated; Paragon maintains it.
 4. List workflow classes in that integration’s **`config.ts`** in **`workflowDisplayOrder`** so they appear in the Connect Portal and dashboard.
+
+If you touch integration-level inputs while wiring a workflow into an integration:
+- First-class field-mapper inputs now use the integration's datasource ID (for example, `customObjectMapping` or `customItemMapping`), not the legacy `field_mapping` type.
+- Do not rename first-class mappers to `custom_field_mapping`; that remains reserved for BYO field-mapping cases.
 
 ---
 
@@ -126,6 +131,12 @@ Only for workflows driven by an HTTP request trigger: set `responseType`, `statu
 ## `FunctionStep`
 
 Runs sandboxed code: must be **self-contained**; pass data via **`parameters`**. Signatures and allowed **`libraries`** are in Paragon’s [JavaScript libraries](https://docs.useparagon.com/resources/javascript-libraries) doc. Output: **`functionStep.output.result`**. Follow the pattern already used in the repo (string module-style `code` vs inline `code`) for consistency with neighboring workflows.
+
+---
+
+## Troubleshooting package resolution
+
+- If `@useparagon/core` fails to import in an ESM or modern TypeScript project (for example `moduleResolution: node16` or `bundler`), upgrade to a Paragraph package version that includes the v1.1.15 export fix before adding tsconfig workarounds.
 
 ---
 
